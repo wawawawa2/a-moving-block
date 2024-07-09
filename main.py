@@ -48,8 +48,9 @@ clock = pygame.time.Clock()
 paused = False
 
 while running:
-    
-    win.fill('red')  # Fill the background color on every iteration
+
+    # fill the screen with black
+    win.fill('black')
     
     # limit the FPS to 60
     clock.tick(60)
