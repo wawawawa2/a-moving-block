@@ -1,18 +1,22 @@
 import pygame
+import os
 
 # initialize pygame and start the music
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.load('music.mp3')
-pygame.mixer.music.set_volume(.25)
-pygame.mixer.music.load('music.mp3')
-pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(0.25)  # Adjusted volume
+pygame.mixer.music.play(-1)  # Looping the music indefinitely
 
 # define the window
 win_width = 800
 win_height = 600
 win = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption('a moving block')
+
+# set the window icon
+icon = pygame.image.load('icon.png')  # Load the icon image
+pygame.display.set_icon(icon)
 
 # make a surface
 surface = pygame.Surface((win_width, win_height), pygame.SRCALPHA)
@@ -24,8 +28,6 @@ font = pygame.font.SysFont(None, 55)
 def pause():
     pygame.draw.rect(surface, (128, 128, 128, 150), [0, 0, win_width, win_height])
     win.blit(surface, (0, 0))
-    pygame.display.update()  # Update the display after drawing the pause overlay
-    pygame.mixer.music.pause()
     
     text = font.render('PAUSE', True, (255, 255, 255))
     text_rect = text.get_rect(center=(win_width // 2, win_height // 2))
@@ -33,7 +35,6 @@ def pause():
     
     pygame.display.update()  # Update the display after drawing the pause overlay
     pygame.mixer.music.pause()
-
 
 # define the player
 player_width = 50
@@ -50,7 +51,7 @@ paused = False
 while running:
 
     # fill the screen with black
-    win.fill('black')
+    win.fill((0, 0, 0))  # Using RGB tuple for black
     
     # limit the FPS to 60
     clock.tick(60)
@@ -60,7 +61,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:  # Corrected event key check
+            if event.key == pygame.K_ESCAPE:
                 paused = not paused
                 if paused:
                     pause()
@@ -84,7 +85,7 @@ while running:
     pygame.draw.rect(win, (0, 0, 255), player)
 
     if paused:
-        pause()  # Draw the pause overlay
+        pause()
 
     pygame.display.update()
 
