@@ -1,8 +1,9 @@
 # a moving block
 - just a simple pygame project :)
 code:
-```
+
 python
+```
 import pygame
 
 # initialize pygame and start the music
