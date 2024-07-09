@@ -2,8 +2,7 @@
 - just a simple pygame project :)
 code:
 
-python
-```
+```python
 import pygame
 
 # initialize pygame and start the music
