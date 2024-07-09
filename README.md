@@ -1,1 +1,2 @@
-# a-moving-block
+# a moving block
+just a simple pygame project :)
